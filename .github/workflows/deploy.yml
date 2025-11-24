@@ -3,21 +3,19 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Branch principal do repositório
-  workflow_dispatch:  # Permite execução manual
+      - master
+      - main
+  workflow_dispatch:
 
-# Permite que apenas uma execução por vez seja executada, colocando em fila as execuções que estão em andamento
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
-# Define permissões GITHUB_TOKEN para permitir deploy no GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Permite apenas uma execução simultânea de deploy
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive  # Importante para temas Hugo
+          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Hugo
