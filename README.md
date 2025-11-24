@@ -1,6 +1,6 @@
-# Blog Técnico - Blockchain OSINT
+# Blog Técnico
 
-Blog técnico construído com [Hugo](https://gohugo.io/) focado em OSINT aplicado a blockchain, rastreamento de transações e segurança ofensiva no ecossistema cripto.
+Blog construído com [Hugo](https://gohugo.io/) usando tema customizado.
 
 ## Características
 
@@ -60,7 +60,7 @@ Edite o arquivo e configure:
 title: "Título do Post"
 date: 2024-01-01
 draft: false
-categories: ["CTF"]  # ou "Programming" ou "Hacking"
+categories: ["categoria1"]
 tags: ["tag1", "tag2"]
 description: "Descrição do post"
 image: "/images/posts/imagem.png"  # Opcional: 1200x630px
@@ -152,7 +152,7 @@ O projeto está configurado para fazer deploy automático no GitHub Pages usando
 3. **Verificar o deploy:**
    - Vá em `Actions` no seu repositório GitHub
    - O workflow `Deploy to GitHub Pages` será executado automaticamente
-   - Após o sucesso, seu site estará disponível em: `https://lnxsantos.github.io/blogger/`
+   - Após o sucesso, seu site estará disponível na URL configurada no GitHub Pages
 
 ### Deploy Automático
 
@@ -173,13 +173,6 @@ O workflow está configurado em `.github/workflows/deploy.yml` e:
 - Faz build com minificação
 - Faz deploy automático no GitHub Pages
 - Suporta temas Hugo com submodules
-
-## Categorias
-
-- **Smart Contracts**: Análise de contratos inteligentes e vulnerabilidades
-- **Blockchain OSINT**: Técnicas de investigação on-chain
-- **Transaction Tracking**: Rastreamento de transações e carteiras
-- **Security**: Segurança ofensiva no ecossistema cripto
 
 ## Licença
 

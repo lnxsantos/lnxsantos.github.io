@@ -1,4 +1,4 @@
-baseURL = 'https://lnxsantos.github.io/blogger/'
+baseURL = 'https://lnxsantos.github.io/'
 languageCode = 'pt-br'
 title = 'Luan Santos'
 theme = 'tech-blog-theme'
