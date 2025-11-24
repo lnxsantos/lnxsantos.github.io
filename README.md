@@ -16,11 +16,13 @@ Blog construído com [Hugo](https://gohugo.io/) usando tema customizado.
 ### Pré-requisitos
 
 **Fedora/RHEL:**
+
 ```bash
 sudo dnf install hugo
 ```
 
 **Outras distribuições:**
+
 ```bash
 # Baixar Hugo
 wget https://github.com/gohugoio/hugo/releases/download/v0.121.0/hugo_extended_0.121.0_linux-amd64.tar.gz
@@ -29,6 +31,7 @@ sudo mv hugo /usr/local/bin/
 ```
 
 **Verificar:**
+
 ```bash
 hugo version
 ```
@@ -143,6 +146,7 @@ O projeto está configurado para fazer deploy automático no GitHub Pages usando
    - Salve as alterações
 
 2. **Push do código:**
+
    ```bash
    git add .
    git commit -m "Configure GitHub Pages deployment"
@@ -157,6 +161,7 @@ O projeto está configurado para fazer deploy automático no GitHub Pages usando
 ### Deploy Automático
 
 O deploy acontece automaticamente quando você faz push para a branch `master`. O workflow:
+
 - Faz build do site Hugo
 - Gera os arquivos estáticos
 - Faz deploy no GitHub Pages
@@ -164,11 +169,13 @@ O deploy acontece automaticamente quando você faz push para a branch `master`. 
 ### Deploy Manual
 
 Você também pode executar o deploy manualmente:
+
 - Vá em `Actions` > `Deploy to GitHub Pages` > `Run workflow`
 
 ### Estrutura do Workflow
 
 O workflow está configurado em `.github/workflows/deploy.yml` e:
+
 - Usa Hugo Extended 0.147.8
 - Faz build com minificação
 - Faz deploy automático no GitHub Pages
