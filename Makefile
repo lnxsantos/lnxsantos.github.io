@@ -18,6 +18,7 @@ build: ## Gera o site estático
 clean: ## Limpa os arquivos gerados
 	@echo "Limpando arquivos gerados..."
 	@rm -rf public/
+	@rm -rf server/
 	@rm -rf resources/_gen/
 
 new: ## Cria um novo post (use: make new POST=nome-do-post)
