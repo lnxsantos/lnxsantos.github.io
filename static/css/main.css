@@ -217,10 +217,10 @@ img {
 }
 
 .site-header {
-    background-color: rgba(245, 245, 247, 0.72);
+    background-color: var(--bg-light);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: none;
+    border-bottom: 1px solid var(--border-separator);
     padding: calc(var(--spacing-unit) * 0.5) 0;
     position: sticky;
     top: 0;
@@ -255,7 +255,7 @@ img {
 
 .brand-link {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--text-color);
     transition: var(--transition);
@@ -294,6 +294,79 @@ img {
     .nav-toggle {
         display: flex;
     }
+}
+
+.page-intro {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.page-intro .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+.book-card {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: calc(var(--spacing-unit) * 1.5);
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 0.75);
+    min-height: 220px;
+}
+
+.book-meta {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.book-summary {
+    color: var(--text-secondary-strong);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.book-actions {
+    margin-top: auto;
+}
+
+.book-link,
+.book-link-secondary {
+    font-weight: 600;
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.book-link:hover,
+.book-link-secondary:hover {
+    border-color: currentColor;
+}
+
+.book-review {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: calc(var(--spacing-unit) * 2);
+    background-color: var(--bg-light);
+}
+
+.book-review-header {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+.book-review-body {
+    line-height: 1.8;
 }
 
 .nav-toggle:hover,
@@ -367,7 +440,7 @@ img {
 
 main {
     flex: 1;
-    padding: 30px 0 calc(var(--spacing-unit) * 1) 0;
+    padding: 60px 0 calc(var(--spacing-unit) * 1) 0;
     animation: fadeIn 0.5s ease-in;
 }
 

@@ -5,15 +5,15 @@
 :root {
     /* Colors */
     --primary-color: #1C1C1E;
-    --primary-dark: #2C2C2E;
-    --primary-light: #55555A;
-    --text-color: #1A1A1A;
-    --text-light: #7A7A7E;
-    --text-tertiary: #A0A0A4;
-    --text-disabled: #B4B4B8;
-    --bg-color: #FAFAFB;
-    --bg-light: #EAEAEC;
-    --bg-code: #EAEAEC;
+    --primary-dark: #232830;
+    --primary-light: #626772;
+    --text-color: #13171E;
+    --text-light: #5A606C;
+    --text-tertiary: #8A8F99;
+    --text-disabled: #A3A7B0;
+    --bg-color: #F1F2F6;
+    --bg-light: #EAEDF2;
+    --bg-code: #EBEEF5;
     --border-color: #DCDCE0;
     --border-separator: #C8C8CC;
     --ui-high-contrast: #55555A;
