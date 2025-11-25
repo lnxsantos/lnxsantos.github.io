@@ -59,8 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getPreferredTheme() {
         const stored = localStorage.getItem('theme');
         if (stored) return stored;
-        if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) return 'dark';
-        return 'light';
+        return 'dark';
     }
     
     setTheme(getPreferredTheme());
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
             if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'dark' : 'light');
+                setTheme('dark');
             }
         });
     }
