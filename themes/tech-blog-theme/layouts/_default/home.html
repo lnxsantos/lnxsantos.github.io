@@ -1,29 +1,44 @@
 {{ define "main" }}
-<div class="container">
-    <div class="home-intro">
-        <p>Decidi começar este diário porque estou estudando muita coisa de cyber, OSINT, hacking e forense digital e já estava tudo ficando perdido. Preciso de um lugar simples pra organizar o que aprendo.
-        </p>
-        <p class="home-description-secondary">
-            Sou <strong>Luan Santos</strong>, Analista de Sistemas durante o dia e estudante de cibersegurança no resto do tempo. Nos últimos meses tenho me aprofundado em forense digital, análise de artefatos, OSINT avançado, logs, memória e investigação de incidentes.
-        </p>
-        <p class="home-description-secondary">
-            Meu objetivo é claro: <strong>desenvolver um nível técnico capaz de investigar e reconstruir qualquer incidente digital</strong>, entendendo detalhes que nem sempre são óbvios.
-        </p>
-        <p class="home-description-secondary">
-            Este blog existe pra registrar meus estudos, avanços, testes e erros, e pra me manter focado mesmo com a correria do trabalho. Aqui você vai encontrar o que estou aprendendo e construindo nessa jornada.
-        </p>
-    </div>
+<main id="main-content" role="main">
+  <div class="container" lang="pt-BR">
+    <section class="home-posts" role="region">
+      <div class="articles-list" aria-live="polite">
+        {{ $posts := where (where .Site.RegularPages "Section" "posts") ".Draft" false }}
+        {{ if $posts }}
+          {{ range $index, $post := $posts }}
+            <article class="article-item" itemscope itemtype="https://schema.org/BlogPosting" aria-labelledby="post-title-{{ $index }}">
+              <header class="article-meta">
+                <time datetime="{{ $post.Date.Format "2006-01-02" }}" class="article-date" itemprop="datePublished">{{ $post.Date.Format "2006-01-02" }}</time>
+              </header>
 
-    <h1 class="articles-title">Últimos Posts</h1>
-    <div class="articles-list">
-        {{ range where (where .Site.RegularPages "Section" "posts") ".Draft" false }}
-        <div class="article-item">
-            <time datetime="{{ .Date.Format "2006-01-02" }}" class="article-date">{{ .Date.Format "2006-01-02" }}</time>
-            <a href="{{ .Permalink }}" class="article-link" itemprop="url">
-                <span itemprop="headline">{{ .Title }}</span>
-            </a>
-        </div>
+              <div class="article-body">
+                <h2 id="post-title-{{ $index }}" class="article-title" itemprop="headline">
+                  <a href="{{ $post.Permalink }}" class="article-link" itemprop="url">{{ $post.Title }}</a>
+                </h2>
+
+                <!-- resumo: prioriza .Params.excerpt, senão .Summary, senão truncamento simples -->
+                <p class="article-excerpt" itemprop="description">
+                  {{ if $post.Params.excerpt }}
+                    {{ $post.Params.excerpt }}
+                  {{ else if $post.Summary }}
+                    {{ $post.Summary | plainify | safeHTML }}
+                  {{ else if $post.Content }}
+                    {{ $post.Content | plainify | truncate 120 }}
+                  {{ end }}
+                </p>
+
+                <p class="article-read">
+                  <a href="{{ $post.Permalink }}" class="read-more" aria-label="Ler {{ $post.Title }}">Ler mais →</a>
+                </p>
+              </div>
+            </article>
+          {{ end }}
+        {{ else }}
+          <p class="home-empty-state">Nenhuma documentação disponível no momento.</p>
         {{ end }}
-    </div>
-</div>
+      </div>
+    </section>
+
+  </div>
+</main>
 {{ end }}

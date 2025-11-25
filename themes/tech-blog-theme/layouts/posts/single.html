@@ -2,52 +2,11 @@
 <article class="post-single" itemscope itemtype="https://schema.org/BlogPosting">
     <div class="container">
         <header class="post-header">
-            {{ if .Params.image }}
-            {{ $image := .Params.image }}
-            {{ if not (hasPrefix $image "http") }}
-            {{ if hasPrefix $image "/" }}
-            {{ $image = $image }}
-            {{ else }}
-            {{ $image = $image | relURL }}
-            {{ end }}
-            {{ end }}
-            <div class="post-image">
-                <img src="{{ $image }}" alt="{{ .Title }}" title="{{ .Title }}" loading="lazy" decoding="async"
-                    itemprop="image" onerror="this.style.display='none'">
-            </div>
-            {{ end }}
-            <div class="post-meta-top">
-                <time datetime="{{ .Date.Format " 2006-01-02" }}" class="post-date" itemprop="datePublished"
-                    aria-label="Data de publicação">
-                    {{ .Date.Format "02/01/2006" }}
-                </time>
-                {{ if .Params.categories }}
-                <div class="post-categories" aria-label="Categorias do post">
-                    <span class="categories-label">Categoria:</span>
-                    {{ range .Params.categories }}
-                    <a href="{{ " /categories/" | relURL }}{{ . | urlize }}/" class="category-tag"
-                        aria-label="Categoria: {{ . }}">
-                        <span class="category-tag-text">{{ . }}</span>
-                    </a>
-                    {{ end }}
-                </div>
-                {{ end }}
-                {{ if .Params.tags }}
-                <div class="post-tags" aria-label="Tags do post">
-                    {{ range .Params.tags }}
-                    <span class="tag" aria-label="Tag: {{ . }}">
-                        <span class="tag-icon">#</span>
-                        <span class="tag-text">{{ . }}</span>
-                    </span>
-                    {{ end }}
-                </div>
-                {{ end }}
-            </div>
             <h1 class="post-title" itemprop="headline">{{ .Title }}</h1>
             {{ if .Lastmod }}
             <div class="post-meta">
                 <time datetime="{{ .Lastmod.Format " 2006-01-02" }}" class="post-date-updated">
-                    Atualizado em {{ .Lastmod.Format "02/01/2006" }}
+                    Luan Santos - {{ .Lastmod.Format "02/01/2006" }}
                 </time>
             </div>
             {{ end }}

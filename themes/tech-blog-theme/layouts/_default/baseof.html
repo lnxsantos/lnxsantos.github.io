@@ -4,13 +4,23 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     
     {{- partial "head.html" . -}}
+    {{- partial "manifest.html" . -}}
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
     
-    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="{{ "css/variables.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/reset.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/layout.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/components.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/home.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/content.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/code.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/responsive.css" | relURL }}">
     
     <script>
         (function() {
@@ -33,7 +43,11 @@
     
     {{ partial "footer.html" . }}
     
-    <script src="{{ "js/main.js" | relURL }}"></script>
+    {{- if hugo.IsProduction -}}
+    <script type="module" src="{{ "js/main.bundle.js" | relURL }}"></script>
+    {{- else -}}
+    <script type="module" src="{{ "js/main.js" | relURL }}"></script>
+    {{- end -}}
 </body>
 </html>
 

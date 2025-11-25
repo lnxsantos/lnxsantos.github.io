@@ -6,7 +6,7 @@ theme = 'tech-blog-theme'
 # Configurações de produção
 [params]
   author = "Luan Santos"
-  description = "Diário técnico sobre OSINT aplicado a blockchain, rastreamento de transações e segurança ofensiva no ecossistema cripto"
+  description = "Documentação técnica de análise forense, OSINT e investigação digital. Procedimentos, metodologias e resultados de investigações."
   github = "https://github.com/lnxsantos"
   
   # Open Graph e Social Media
@@ -37,21 +37,16 @@ theme = 'tech-blog-theme'
   weight = 3
 
 [[menu.main]]
-  identifier = "lab"
-  name = "Lab"
-  url = "/lab/"
+  identifier = "about"
+  name = "About"
+  url = "/about/"
   weight = 4
-
-# Configurações de taxonomia
-[taxonomies]
-  category = "categories"
-  tag = "tags"
 
 # Configurações de markdown
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = true  # Permite HTML no markdown
+      unsafe = false  # Segurança: não permite HTML arbitrário no markdown
   [markup.highlight]
     style = "github"
     lineNos = true

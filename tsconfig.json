@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["themes/tech-blog-theme/static/js/*"]
+    }
+  },
+  "include": [
+    "themes/tech-blog-theme/static/js/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "public",
+    "server"
+  ]
+}
+

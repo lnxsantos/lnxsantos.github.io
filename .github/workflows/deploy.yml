@@ -7,17 +7,20 @@ on:
       - main
   workflow_dispatch:
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,28 +35,34 @@ jobs:
           hugo-version: '0.147.8'
           extended: true
 
-      - name: Build with Hugo
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
         run: |
-          hugo \
-            --gc \
-            --minify
+          if [ -f package.json ]; then
+            npm ci
+          fi
+
+      - name: Build assets
+        run: |
+          npm run build:js || echo "⚠️  JavaScript build skipped"
+          npm run build:css || echo "⚠️  CSS build skipped"
+
+      - name: Build Hugo
+        run: hugo --minify --environment production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
