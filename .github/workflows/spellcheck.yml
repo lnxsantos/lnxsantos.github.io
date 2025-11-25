@@ -1,0 +1,23 @@
+name: Spell Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run spellchecker
+        uses: tbroadley/spellchecker-cli-action@v1
+        with:
+          files: "*.md content/**/*.md themes/**/*.md"
+          dictionaries: ".github/dictionary.txt"
+          fail_on_error: false
+
