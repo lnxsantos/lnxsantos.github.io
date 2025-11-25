@@ -6,8 +6,37 @@
 
 import { build } from 'esbuild';
 import { execSync } from 'child_process';
+import { cpSync, mkdirSync, existsSync, readdirSync, statSync, copyFileSync } from 'fs';
+import { join } from 'path';
 
 const isProduction = process.env.NODE_ENV === 'production';
+
+// Copy CSS files to static (Hugo needs them there to serve)
+// JS files don't need to be copied - we only use the bundle
+function copyCSSFiles() {
+    console.log('📋 Copying CSS files to static...');
+    
+    const srcCss = 'themes/app/css';
+    const themeCss = 'static/css';
+    
+    // Create directory if it doesn't exist
+    if (!existsSync(themeCss)) mkdirSync(themeCss, { recursive: true });
+    
+    // Copy CSS files (Hugo serves from static/)
+    if (existsSync(srcCss)) {
+        const files = readdirSync(srcCss);
+        for (const file of files) {
+            if (!file.endsWith('.css')) continue;
+            const srcPath = join(srcCss, file);
+            const destPath = join(themeCss, file);
+            if (statSync(srcPath).isFile()) {
+                copyFileSync(srcPath, destPath);
+            }
+        }
+    }
+    
+    console.log('✅ CSS files copied!');
+}
 
 // Build JavaScript
 async function buildJS() {
@@ -15,10 +44,10 @@ async function buildJS() {
     
     try {
         await build({
-            entryPoints: ['themes/tech-blog-theme/static/js/main.js'],
+            entryPoints: ['themes/app/js/main.js'],
             bundle: true,
             format: 'iife',
-            outfile: 'themes/tech-blog-theme/static/js/main.bundle.js',
+            outfile: 'static/js/main.bundle.js',
             minify: isProduction,
             sourcemap: !isProduction,
             target: 'es2020',
@@ -36,7 +65,7 @@ function buildCSS() {
     console.log('🎨 Building CSS...');
     
     try {
-        execSync('npx postcss themes/tech-blog-theme/static/css/*.css --dir themes/tech-blog-theme/static/css/dist --map', {
+        execSync('npx postcss themes/app/css/*.css --dir static/css/dist --map', {
             stdio: 'inherit',
         });
         console.log('✅ CSS built successfully!');
@@ -49,6 +78,7 @@ function buildCSS() {
 async function main() {
     console.log('🚀 Starting build process...\n');
     
+    copyCSSFiles();
     await buildJS();
     buildCSS();
     

@@ -9,7 +9,7 @@ export default defineConfig({
             reporter: ['text', 'json', 'html'],
             exclude: [
                 'node_modules/',
-                'themes/**/*.test.js',
+                'themes/app/**/*.test.js',
             ],
         },
     },

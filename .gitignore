@@ -1,5 +1,6 @@
 # Hugo
 /public/
+/server/
 /resources/_gen/
 .hugo_build.lock
 
@@ -54,7 +55,12 @@ test-results/
 playwright-report/
 playwright/.cache/
 
-# Bundle files (generated)
-themes/tech-blog-theme/static/js/main.bundle.js
-themes/tech-blog-theme/static/js/main.bundle.js.map
+# Source files copied to static (generated from app/ during build)
+# These are copied from app/ during build, so we ignore them
+# Only the bundle files should be committed
+themes/tech-blog-theme/static/js/*.js
+!themes/tech-blog-theme/static/js/main.bundle.js
+themes/tech-blog-theme/static/js/*.ts
+themes/tech-blog-theme/static/js/*.test.js
+themes/tech-blog-theme/static/css/*.css
 themes/tech-blog-theme/static/css/dist/
